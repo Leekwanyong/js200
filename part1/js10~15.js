@@ -82,7 +82,7 @@ var hometown2 = [
 
 // 매개변수 h, name을 받음
 var isHometown = function (h, name) {
-    console.log(`함수가 실행되었습니다. ${h.city} 도시에서 ${name}을 찾습니다.`);
+    console.log(`함수가 실행되었습니다. ${h.city} 도시에서 ${name}을 찾습니다.`, h);
     // h.name === name이 같다면 console 출력 후 함수 종료
     if (h.name === name) {
         console.log(`${h.name}의 고향은 ${h.city} ${h.place} 입니다.`);
@@ -92,27 +92,27 @@ var isHometown = function (h, name) {
     return false;
 }
 
-var h;
-// 배열에 앞에서 부터 값을 뺴옴 즉 0번쨰 부터 끝까지
-while (h = hometown2.shift()) {
+var h2;
+// 배열에 앞에서 부터 값을 뺴옴 즉 0번쨰 부터 끝까지 , 그 값 자체가 반환
+while (h2 = hometown2.shift()) {
     // 셋 중에 하나라도 없다면 밑에 코드 실행 X 다음 반복문 실행
-    if (!h.name || !h.city || !h.place) continue;
+    if (!h2.name || !h2.city || !h2.place) continue;
 
     // 객체의  {name: '남준', place: '안산', city: '고양'}, 값이 0번째부터 들어감
-    var result = isHometown(h, '호석');
-    // 리절트가 있다면 와일문 종료
-    if (result) break;
+    var results = isHometown(h2, '호석');
+    // results 있다면 와일문 종료
+    if (results) break;
 }
 
-var i = 0;
+var k = 0;
 var names = ['남준', '정국', '윤기', '호섭'];
 var cities = ['경기', '부산', '대구', '광주'];
 // 한 번은 무조건 실행
 do {
     // 0번 쨰부터 남준 배열에 끝까지 하나 씩 넣음, city 경기부터 ~
-    hometown2[i] = {name: names[i], city: cities[i]};
+    hometown2[k] = {name: names[k], city: cities[k]};
     // i 증가 1씩
-    i++;
-} while (i < 4);
+    k++;
+} while (k < 4);
 
 console.log(hometown2);
