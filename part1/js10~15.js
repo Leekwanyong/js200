@@ -111,7 +111,7 @@ var cities = ['경기', '부산', '대구', '광주'];
 do {
     // 0번 쨰부터 남준 배열에 끝까지 하나 씩 넣음, city 경기부터 ~
     hometown2[k] = {name: names[k], city: cities[k]};
-    // i 증가 1씩
+    // k 증가 1씩
     k++;
 } while (k < 4);
 
