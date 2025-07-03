@@ -32,7 +32,7 @@ console.log(rest); // 3, 4
 
 var [a = 10, f = 9] = arr;
 console.log(a); // 1
-console.log(f); // 9
+console.log(f); // 2
 
 function getArr() {
     return [1, 2, 3, 4, 5, 6];
