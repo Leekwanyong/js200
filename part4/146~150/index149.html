@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>이벤트 위임 처리하기 예제</title>
+    </head>
+    <body>
+        <h2>할 일</h2>
+        <ul id="todo-list">
+            <li>공부하기<button class="remove-button">X</button></li>
+            <li>장보기<button class="remove-button">X</button></li>
+            <li>숙제하기<button class="remove-button">X</button></li>
+        </ul>
+        <script>
+            document.querySelector("ul#todo-list").addEventListener("click", function (event) {
+                // 0 < 0 같은 수를 비교할 경우 false가 나온다 메타인지 중요함
+                if (event.target.className.indexOf("remove-button") < 0) {
+                    return;
+                }
+                // closest 현재 요소의 부모 중 인자로 전달한 선택자에 해당하는 가장 가까운 요소 반환
+                const li = event.target.closest("li");
+                console.log(`${li.innerText} 삭제`);
+                li.remove();
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>사용자 이벤트 생성하기 예제</title>
+    </head>
+    <body>
+        <div class="order-area">
+            <div>상품정보: 노트북 1대</div>
+            <button id="order-btn">주문하기</button>
+        </div>
+        <script>
+            function buildAlert(title, message) {
+                const alert = document.createElement("div");
+                const id = Math.ceil(Math.random() * 1000);
+
+                alert.className = "alert";
+                alert.innerHTML = `
+                <span class='close'>&times;</span>
+                <h3>${title}</h3>
+                <p>${message}</p>`;
+                alert.id = id;
+                alert.querySelector("span.close").addEventListener("click", (e) => {
+                    //브라우저에서 기본적으로 제공하는 이벤트(예: click, input 등) 외에,
+                    //개발자가 직접 이름과 데이터를 정해서 만드는 이벤트
+                    const closeEvt = new CustomEvent("close", {
+                        bubbles: true,
+                        detail: { id, message },
+                    });
+                    //이벤트를 강제로 발생(트리거)시키는 메서드입니다.
+                    // alert.dispatchEvent(closeEvt); → alert 요소에서 "close"라는 커스텀 이벤트를 발생시킴
+                    alert.dispatchEvent(closeEvt);
+                    alert.remove();
+                });
+                // prepend는 DOM 요소의 맨 앞에 새로운 요소(또는 텍스트)를 추가하는 메서드
+                document.body.prepend(alert);
+
+                return alert;
+            }
+
+            document.getElementById("order-btn").addEventListener("click", (e) => {
+                const alertEl = buildAlert("에러", "로그인을 해주세요.");
+                alertEl.addEventListener("close", (e) => {
+                    console.log(e.detail);
+                    console.log("error 창을 닫았습니다.");
+                });
+            });
+        </script>
+    </body>
+</html>

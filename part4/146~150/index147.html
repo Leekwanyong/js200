@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="event-flow.css" />
+        <title>이벤트 팔로우 예제</title>
+    </head>
+    <body>
+        <h1>DOM 이벤트 플로우</h1>
+        <div id="element1" class="box">
+            <div id="element2" class="box2">버블링</div>
+        </div>
+        <div id="element3" class="box">
+            <div id="element4" class="box2">캡처링</div>
+        </div>
+        <script>
+            // 이벤트가 가장 안쪽(자식) 요소에서 시작해서, 바깥(부모) 요소로 전파
+            element1.addEventListener("click", (e) => console.log("요소1 클릭"));
+            element2.addEventListener("click", (e) => console.log("요소2 클릭"));
+            // 이벤트가 가장 바깥(부모) 요소에서 시작해서, 안쪽(자식) 요소로 전파됩니다.
+            // addEventListener의 세 번째 인자에 true를 주면, 캡처링 단계에서 이벤트를 처리합니다.
+            element3.addEventListener("click", (e) => console.log("요소3 클릭"), true);
+            element4.addEventListener("click", (e) => console.log("요소4 클릭"));
+        </script>
+    </body>
+</html>
