@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>DOM 이해하기</title>
+    </head>
+    <body>
+        <div id="div1">hello DOM</div>
+        <ul>
+            <li>list item1</li>
+            <li>list item2</li>
+        </ul>
+        <script>
+            // nodeType = “태그면  Element 1, 글자면 Text 3, 주석이면 Comment 8”
+            const divEl = document.getElementById("div1");
+            console.log(divEl.innerHTML); // hello DOM
+
+            console.log(divEl.nodeType); // 1
+            console.log(divEl.nodeType === Node.ELEMENT_NODE); // true
+
+            console.log(divEl instanceof HTMLDivElement); // true
+            console.log(divEl instanceof HTMLElement); // true
+            console.log(divEl instanceof Node); // true
+            console.log(divEl.prototype); // undefined
+            console.log(divEl.tagName); // DIV
+
+            const div1El2 = document.querySelector("#div1");
+            console.log(div1El2.innerHTML); // hello DOM
+
+            const liEls = document.querySelectorAll("ul li");
+            console.log(liEls.item(0).innerHTML); // list item1
+            console.log(liEls.item(1).textContent); // list item2
+        </script>
+    </body>
+</html>

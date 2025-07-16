@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>DOM 속성과 태그 속성 이해하기 예제</title>
+    </head>
+    <body>
+        <div id="div1" class="div-class">DIV 태그</div>
+        <input type="text" id="input1" value="jay" />
+        <script>
+            const divEl = document.getElementById("div1");
+            const inputEl = document.getElementById("input1");
+
+            console.log(divEl.hasAttribute("id")); // true
+            console.log(divEl.getAttribute("id")); // div1
+            console.log(divEl.id); // div1
+            divEl.removeAttribute("id");
+            divEl.setAttribute("id", "new-id");
+            console.log(divEl.id); // new-id
+
+            divEl.id = "new-id-2";
+            console.log(divEl.getAttribute("id")); // new-id-2
+
+            console.log(divEl.getAttribute("class"));
+            console.log(divEl.class); // div-class
+            console.log(divEl.className); // undefined
+
+            divEl.setAttribute("class", "new-div-class");
+            console.log(divEl.className); // div-class
+            divEl.className = "new-div-class";
+            console.log(divEl.getAttribute("class")); // new-div-class
+
+            const valueArr = inputEl.getAttribute("value");
+            console.log(valueArr); // jay
+            console.log(inputEl.value); // jay
+            inputEl.value = "jay2";
+            console.log(inputEl.getAttribute("value")); // jay
+        </script>
+    </body>
+</html>
