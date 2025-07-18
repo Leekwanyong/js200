@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>스크롤을 아래로 내려보세요</title>
+    </head>
+    <body>
+        <section>
+            <h1>스크롤을 아래로 내려보세요.</h1>
+        </section>
+        <nav>JS 200제</nav>
+        <sction class="articles"></sction>
+        <script>
+            const nav = document.querySelector("nav");
+            const navTopOffset = nav.offsetTop;
+            window.addEventListener("scroll", (e) => {
+                if (window.pageYOffset < navTopOffset) {
+                    nav.style.position = "fixed";
+                    nav.style.top = 0;
+                    nav.style.left = 0;
+                    nav.style.right = 0;
+                } else {
+                    nav.style.position = "";
+                    nav.style.top = "";
+                }
+            });
+        </script>
+    </body>
+</html>
