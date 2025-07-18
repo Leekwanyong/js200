@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            function sumitForm() {
+                const form = document.getElementById("card-form");
+                const formData = new FormData(form);
+                const formObj = {
+                    cardNumber: formData.get("cardnumber"),
+                    holderName: formData.get("holderName"),
+                };
+                window.parent.postMessage(formObj, "*");
+            }
+        </script>
+        <form id="card-form" onsubmit="submitForm()">
+            <div>
+                <label>카드 번호</label>
+                <input type="text" name="cardNumber" />
+            </div>
+            <div>
+                <label>이름</label>
+                <input type="text" name="holderName" />
+            </div>
+            <button type="submit">결제하기</button>
+        </form>
+    </body>
+</html>
