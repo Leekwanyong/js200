@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>웹워커 예제</title>
+    </head>
+    <body>
+        <p>웹워커는 무거운 작업을 백그라운드에서 실행시켜준다.</p>
+        <div>
+            <input type="number" id="number" />
+            <button id="start-btn">피보나치수열 계산시작</button>
+        </div>
+        <div id="result"></div>
+        <script>
+            const reulst = document.getElementById("result");
+            let isCalculation = false;
+            if (window.Worker) {
+                const fibonacciWorker = new Worker("fibonacci.js");
+                document.getElementById("start-btn").addEventListener("click", (e) => {
+                    if (isCalculation) {
+                        return;
+                    }
+                    const value = document.getElementById("number").value;
+                    fibonacciWorker.postMessage({ num: value });
+                    reulst.innerHTML = "계산 중...";
+                    isCalculation = true;
+                });
+                fibonacciWorker.onmessage = function (e) {
+                    reulst.innerHTML = e.data;
+                    isCalculation = false;
+                };
+                fibonacciWorker.onerror = function (error) {
+                    console.log("에러", error);
+                    reulst.innerHTML = error.message;
+                    isCalculation = false;
+                };
+            }
+        </script>
+    </body>
+</html>
