@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button id="drawer-open">메뉴 열기</button>
+        <div id="drawer">
+            <h1>메뉴</h1>
+            <ul>
+                <li>항목1</li>
+                <li>항목2</li>
+            </ul>
+        </div>
+        <script>
+            function Drawer(el, open = false) {
+                this.el = el;
+                this.isOpen = open;
+                // 요소 숨김 요소의 스타일 적용
+                Object.assign(this.el.style, {
+                    display: "block",
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    right: 0,
+                    width: "200px",
+                    height: "200px",
+                    padding: "10px",
+                    backgroundColor: "white",
+                    boxShadow: "0 0 36px rgba(0, 0, 0, 0.1)",
+                    transition: "all 0.4s ease-in-out",
+                });
+
+                this.isOpen ? this.open() : this.close();
+            }
+
+            Drawer.prototype.open = function () {
+                this.isOpen = true;
+                this.el.style.transform = "translateX(0px)";
+            };
+
+            Drawer.prototype.close = function () {
+                this.isOpen = false;
+                this.el.style.transform = "translateX(220px)";
+            };
+
+            const sideMenu = new Drawer(document.getElementById("drawer"));
+            document.getElementById("drawer-open").addEventListener("click", (e) => {
+                if (!sideMenu.isOpen) {
+                    sideMenu.open();
+                } else {
+                    sideMenu.close();
+                }
+            });
+        </script>
+    </body>
+</html>

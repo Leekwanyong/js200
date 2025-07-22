@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>멀티 슬라이드쇼 만들기</title>
+    </head>
+    <body>
+        <h1>국내 여행</h1>
+        <div class="slider">
+            <div class="slider-btn-wrapper slider-btn-wrapper-left">
+                <button id="left-btn" class="slider-btn">&larr;</button>
+            </div>
+            <div class="item-wrapper">
+                <div class="item">
+                    <img src="https://picsum.photos/id/1000/1000/1000" alt="국내 여행 이미지" />
+                    <div class="title">
+                        <h2>서울</h2>
+                        <p>3000원</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="https://picsum.photos/id/1000/1000/1000" alt="국내 여행 이미지" />
+                    <div class="title">
+                        <h2>제주도</h2>
+                        <p>3000원</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="https://picsum.photos/id/1000/1000/1000" alt="국내 여행 이미지" />
+                    <div class="title">
+                        <h2>부산</h2>
+                        <p>3000원</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="https://picsum.photos/id/1000/1000/1000" alt="국내 여행 이미지" />
+                    <div class="title">
+                        <h2>강릉</h2>
+                        <p>3000원</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-btn-wrapper slider-btn-wrapper-right">
+                <button id="right-btn" class="slider-btn">&rarr;</button>
+            </div>
+        </div>
+        <script>
+            (function () {
+                const itemWrapperEl = document.querySelector(".item-wrapper"),
+                    leftBtnEl = document.querySelector("#left-btn"),
+                    rightBtnEl = document.querySelector("#right-btn");
+
+                function moveSlides(direction) {
+                    const item = itemWrapperEl.querySelector(".item"),
+                        itemMargin = parseFloat(getComputedStyle(item).marginRight);
+                    itemWidth = itemMargin + item.offsetWidth + 2;
+
+                    let itemCount = Math.floor(itemWrapperEl.scrollLeft / itemWidth);
+
+                    if (direction === "left") {
+                        itemCount = itemCount - 1;
+                    } else {
+                        itemCount = itemCount + 1;
+                    }
+
+                    itemWrapperEl.scrollLeft = itemCount * itemWidth;
+                }
+
+                leftBtnEl.addEventListener("click", () => moveSlides("left"));
+                rightBtnEl.addEventListener("click", () => moveSlides("right"));
+            })();
+        </script>
+    </body>
+</html>

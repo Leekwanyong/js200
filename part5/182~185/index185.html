@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>간단한 텍스트 에디터 만들기 예제</title>
+    </head>
+    <body>
+        <div class="toolbar">
+            <a href="" data-command="h1">H1</a>
+            <a href="" data-command="h2">H2</a>
+            <a href="" data-command="h3">H3</a>
+            <a href="" data-command="p" style="margin-right: 8px">P</a>
+            <a href="" data-command="bold"><i class="fa fa-italic"></i></a>
+            <a href="" data-command="underline"><i class="fa fa-underline"></i></a>
+            <a href="" data-command="strike"><i class="fa fa-strikethrough" style="margin-right: 8px"></i></a>
+            <a href="" data-command="justifyLeft"><i class="fa fa-align-left" style="margin-right: 8px"></i></a>
+            <a href="" data-command="justifyRight"><i class="fa fa-align-right" style="margin-right: 8px"></i></a>
+            <a href="" data-command="justifyFull"><i class="fa fa-align-justify" style="margin-right: 8px"></i></a>
+        </div>
+        <div class="editor" contenteditable="true">
+            <h1>심플 에디터</h1>
+            <p>간단한 에디터</p>
+        </div>
+        <script>
+            document.querySelectorAll(".toolbar a").forEach((v) => {
+                v.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const command = v.dataset.command;
+                    // html 블록레벨 요소라면 명령을 전달 formatBlock
+                    if (command === "h1" || command === "h2" || command === "h3" || command === "p") {
+                        document.execCommand("formatBlock");
+                    } else {
+                        document.execCommand(command);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
